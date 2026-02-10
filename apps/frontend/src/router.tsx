@@ -1,35 +1,18 @@
-import {
-  Outlet,
-  createRootRoute,
-  createRoute,
-  createRouter,
-} from "@tanstack/react-router";
+import { createRouter } from '@tanstack/react-router'
 
-const rootRoute = createRootRoute({
-  component: () => (
-    <main>
-      <h1>Simporder</h1>
-      <Outlet />
-    </main>
-  ),
-});
+// Import the generated route tree
+import { routeTree } from './routeTree.gen'
 
-const indexRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/",
-  component: () => (
-    <section>
-      <p>Frontend workspace is running with TanStack Router.</p>
-    </section>
-  ),
-});
+export const router = createRouter({
+  routeTree,
+  context: {},
 
-const routeTree = rootRoute.addChildren([indexRoute]);
+  scrollRestoration: true,
+  defaultPreloadStaleTime: 0,
+})
 
-export const router = createRouter({ routeTree });
-
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface Register {
-    router: typeof router;
+    router: typeof router
   }
 }
