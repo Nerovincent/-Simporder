@@ -1,0 +1,14 @@
+{
+  "name": "simporder",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "bun run dev:backend & bun run dev:frontend",
+    "dev:frontend": "bun run --filter './apps/frontend' dev",
+    "dev:backend": "bun run --filter './apps/backend' dev",
+    "build": "bun run --filter './apps/frontend' build",
+    "start": "bun run --filter './apps/backend' start"
+  }
+}
